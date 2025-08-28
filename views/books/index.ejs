@@ -1,0 +1,28 @@
+<h1>My Bookshelf</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Published</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% books.forEach(book => { %>
+            <tr>
+                <td><%= book.title %></td>
+                <td><%= book.author %></td>
+                <td><%= book.genre %></td>
+                <td><%= book.published_date ? book.published_date.toISOString().split('T')[0] : '' %></td>
+                <td>
+                    <a href="/books/<%= book.id %>/edit">Edit</a>
+                    <form action="/books/<%= book.id %>/delete" method="POST" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
